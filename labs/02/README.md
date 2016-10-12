@@ -10,7 +10,7 @@ PGP (Pretty Good Privacy)
 was created by Phil Zimmerman as a way for activists to
 communicate securely over the Internet.
 
-![Phil Zimmerman](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/labs/02/media/phil.jpg)
+![Phil Zimmerman](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/labs/02/media/phil.jpg =160x)
 
 Over time, it has evolved into an open standard,
 called OpenPGP. Several implementations support the PGP message format:
@@ -73,7 +73,7 @@ Please specify how long the key should be valid.
          m = key expires in n months
          y = key expires in n years
 Key is valid for? (0)
-``
+```
 
 Make sure your key is valid at least for the duration of the term,
 say 14 weeks.
