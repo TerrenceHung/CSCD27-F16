@@ -10,7 +10,7 @@ PGP (Pretty Good Privacy)
 was created by Phil Zimmerman as a way for activists to
 communicate securely over the Internet.
 
-![Phil Zimmerman](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/labs/02/media/phil.jpg =160x)
+![Phil Zimmerman](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/labs/02/media/phil.jpg)
 
 Over time, it has evolved into an open standard,
 called OpenPGP. Several implementations support the PGP message format:
@@ -175,15 +175,18 @@ This pair has an id that you will need for the rest of this tutorial. The `__key
 You can also list the secret keys stored in your keyring:
 
 ```shell
-$ gpg --list-secret-keys```
+$ gpg --list-secret-keys
+```
 
 You can export the keys previously generated as follows::
 
 ```shell
-gpg --export --armor __key_id__```
+gpg --export --armor __key_id__
+```
 
 ```shell
-gpg --export-secret-keys --armor __key_id__```
+gpg --export-secret-keys --armor __key_id__
+```
 
 
 **Never ever store, transmit or reveal your secret key to anyone.** Contrarily, you can do whatever you want with your public key. However, you might need to export the private key in case you want to use the same GPG on another machine.
@@ -218,7 +221,8 @@ When two persons want to communicate securely with PGP, they will need to exchan
 One convenient way to make your public key available to anyone is to upload it on one of the available gpg keyserver. Here, we are going to use the [MIT PGP key server](http://pgp.mit.edu/). You can either upload the public through the web interface or use the command line:
 
 ```shell
-$ gpg --keyserver pgp.mit.edu --send-keys __key_id__```
+$ gpg --keyserver pgp.mit.edu --send-keys __key_id__
+```
 
 ## Importing someone's public key
 
@@ -235,7 +239,6 @@ Keys 1-1 of 1 for "thierry.sans@utoronto.ca".  Enter number(s), N)ext, or Q)uit 
 Select `1` to import the key.
 
 ```shell
-
 gpg: requesting key 331D549F from hkp server pgp.mit.edu
 gpg: key 331D549F: "Thierry Sans (UofT) " not changed
 gpg: Total number processed: 1
@@ -247,9 +250,11 @@ gpg:               imported: 1  (RSA: 1)
 It is important to check the fingerprint of the key you just imported. You can view the fingerprint of the key you just imported using:
 
 ```shell
-$ gpg --fingerprint name@email.com```
+$ gpg --fingerprint name@email.com
+```
 
 For instance, here is Thierry's correct public-key fingerprint:
+
 ```shell
 E5EA 739C F3EF 6CA5 0DA3  A682 E9A2 04A8 331D 549F
 ```
@@ -261,7 +266,8 @@ enabling Oscar to read all the encrypted mail you send to your instructor.
 Once you have verified someone's public key, you should sign it. It will prevent Oscar to modify this key once stored in your keyring. With gpg, you can use
 
 ```shell
-$ gpg --sign-key name@email.com```
+$ gpg --sign-key name@email.com
+```
 
 ## Encrypting and signing messages
 
@@ -269,11 +275,13 @@ Now practice signing and encrypting messages. First, create a text file `msg.txt
 signed and encrypted. This is your plaintext. Now sign it with your private key, encrypt it with your public key, and save it in "ASCII-armored" formatted file `msg.asc`.
 
 With gpg, you can use:
+
 ```shell
 gpg --encrypt --sign --armor --recipient name@email.com &lt; msg.txt > msg.asc
 ```
 
 You can decrypt the contents of `msg.asc` by typing:
+
 ```shell
 gpg < msg.asc
 ```
@@ -363,7 +371,8 @@ Comment: A revocation certificate should follow
 I have remove this key on purpose.
 I do not want you to revoke  my certificate :)
 
------END PGP PUBLIC KEY BLOCK-----```
+-----END PGP PUBLIC KEY BLOCK-----
+```
 
 Once generated, **do not import this revocation certificate to your keyring or to the keyserver**,
 since if you do, your public-private key will
