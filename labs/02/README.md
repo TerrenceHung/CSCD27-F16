@@ -1,32 +1,14 @@
 # CSCD27 Lab 2 : PGP/GPG Secure Email
 
-Ordinary email is totally insecure:
-it is trivial to send forged email with a spoofed
-`From:` address, and in some environments,
-it is easy to intercept (eavesdrop) and even tamper with
-email contents during transmission from sender to receiver.
+In this problem, you will gain experience with PGP, a popular format for email encryption. Ordinary email is completely insecure: it is very easy to send forged email with a spoofed `From:` address, and furthermore, in some environments it is easy to eavesdrop or even modify email during transmission.
 
-PGP (Pretty Good Privacy)
-was created by Phil Zimmerman as a way for activists to
-communicate securely over the Internet.
+Pretty Good Privacy (PGP) was created by Phil Zimmerman as a way for activists to communicate securely over the Internet.
 
 ![Phil Zimmerman](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/labs/02/media/phil.jpg)
 
-Over time, it has evolved into an open standard,
-called OpenPGP. Several implementations support the PGP message format:
-PGP is distributed by PGP Corporation;
-GPG (Gnu Privacy Guard) is an open-source Gnu implementation.
-Because they are based on common underlying protocols,
-all the implementations can interoperate.
-The mathlab server has gpg installed.
+Over time, it has evolved into an open standard, called OpenPGP. Several implementations support the PGP message format: PGP is distributed by PGP Corporation; GPG (Gnu Privacy Guard) is an open-source Gnu implementation. Because PGP and GPG are based on common underlying protocols, all the implementations can interoperate.
 
-The following instructions describe how to use GPG.
-Since the steps are fairly detailed, you are encouraged
-to try them out in tutorial, so that if you get stuck,
-you can ask the instructor or the TA for assistance.
-Note that you can view additional documentation on how to use
-gpg on mathlab.utsc by typing `man gpg` at the command prompt.
-
+The following instructions describe how to use GPG. Since the steps are fairly detailed, you are encouraged to try them out in tutorial, so that if you get stuck, you can ask the instructor or the TA for assistance. Note that you can view additional documentation on how to use gpg on mathlab.utsc by typing `man gpg` at the command prompt.
 
 ## Generating a matching pair of public and private keys
 
@@ -296,23 +278,16 @@ able to read the received messages and to verify the signatures on them
 
 ## Revoking a GPG key
 
+In this part, you will generate a revocation certificate. However, **do not import this revocation certificate to your keyring or to the keyserver**, since if you do, your public-private key will become unusable, and you'll have to go back and generate a new one.
+
 There are several reasons why you might want or need to revoke an
 existing GPG key, for example:
 
 - your private key is stolen or compromised,
-- this key is no longer in use,
-- you've replaced this with a newer key,
-- your key is not large enough to be secure,
+- you are replacing your key with a stronger one
 - you forget the key's passphrase (it happens, surprisingly often ;-).
 
-To access your secret key, you need to know your passphrase.
-As mentioned above, if you forget the passphrase for a key,
-you would like to revoke that key, but you can't generate
-a revocation certificate without the passphrase ("catch 22").
-To avoid finding yourself in this unfortunate position,
-it is wise to create a revocation certificate at the same
-time or soon after you create your GPG keys,
-while the passphrase is still fresh in your mind.
+If your private key is stolen/compromised, or you forget the passphrase, you won't be able to read messages sent to you and encrypted with your public key. In the stolen/compromised case, if you also lose the passphrase you won't be able to stop the thief from using your private key to sign messages as you. In the lost passphrase situation, you won't even be able to revoke your public key.
 
 The GPG command to create a key-revocation certificate is:
 
@@ -374,9 +349,9 @@ I do not want you to revoke  my certificate :)
 -----END PGP PUBLIC KEY BLOCK-----
 ```
 
-Once generated, **do not import this revocation certificate to your keyring or to the keyserver**,
-since if you do, your public-private key will
-become unusable, and you'll have to go back and generate a new one.
+To actually use a revocation certificate to revoke a key, you would import it into your keyring, at which point the associated key would become unusable.
+
+Note, you are *not* asked to perform the keyring-import step as part of this problem, just to generate the revocation certificate for possible future use (e.g. you forget your passphrase). In general, a revocation certificate should be kept secure, so that someone else can't use it to revoke one of your working keys.
 
 ## [optional] Configuring your email client to work with PGP
 

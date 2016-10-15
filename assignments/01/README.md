@@ -7,21 +7,24 @@ The primary goals of this assignment are to improve your understanding of
 - Part 3. Secure-hash exploits (seen in lab 4)
 
 Good Luck!
-___
 
-## Submission Instructions
+## Instructions
+
+### Submission
 
 Make sure to send your course feedback for part 1 as a secure email message to the TA.
 
-Submit on the `mathlab.utsc.utoronto.ca` system your solutions for part 1 `revoke.cert`, part 2 `rc4.py` and part 3 (`extension.py`,
-`md5_collisions.txt`, `nice.py`,
-and `nasty.py`).
+Submit on the `mathlab.utsc.utoronto.ca` system your solutions:
+
+- for part 1: `public.cert` and `revoke.cert`
+- for part 2: `rc4.py`
+- for part 4: `extension.py`, `md5_collisions.txt`, `nice.py`, and `nasty.py`
 
 ```shell
-submit -c cscd27f16 -a a1 revoke.cert rc4.py extension.py md5_collisions.txt nice.py nasty.py
+submit -c cscd27f16 -a a1 public.cert revoke.cert rc4.py extension.py md5_collisions.txt nice.py nasty.py
 ```
 
-## Academic Integrity
+### Academic Integrity
 
 ___
 
@@ -29,31 +32,30 @@ ___
 
 In this problem, you will gain experience with PGP, a popular format for email encryption. Ordinary email is completely insecure: it is very easy to send forged email with a spoofed `From:` address, and furthermore, in some environments it is easy to eavesdrop or even modify email during transmission.
 
-Pretty Good Privacy (PGP) was created by Phil Zimmerman as a way for activists to communicate securely over the Internet. Over time, it has evolved into an open standard, called OpenPGP. Several implementations support the PGP message format: PGP is distributed by PGP Corporation; GPG (Gnu Privacy Guard) is an open-source Gnu implementation. Because PGP and GPG are based on common underlying protocols, all the implementations can interoperate.
+Pretty Good Privacy (PGP) was created by Phil Zimmerman as a way for activists to communicate securely over the Internet.
+
+![Phil Zimmerman](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/assignments/01/media/phil.jpg)
+
+Over time, it has evolved into an open standard, called OpenPGP. Several implementations support the PGP message format: PGP is distributed by PGP Corporation; GPG (Gnu Privacy Guard) is an open-source Gnu implementation. Because PGP and GPG are based on common underlying protocols, all the implementations can interoperate.
 
 ### 1.1 PGP/GPG in practice [5 marks]
 
-If you have not done so in the lab yet, use the instructions provided in the PGP/GPG handout to create a public-private key pair and publish is on the MIT keyserver.
+**Task:** If you have not done so yet in [lab 02](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/labs/02/README.md), create a public-private key pair and publish is on the MIT keyserver and export your public key as an ASCII-armored certificate.
 
 ### 1.2 Course Feedback [10 marks]
 
 What topic would you most like to see explained in more depth in lecture or discussed in tutorials? You may answer with as little as a single sentence or as much as a single paragraph.
 
-Send this message to as a signed and encrypted attachment to an email message to the TA (williamwei.feng@mail.utoronto.ca). The email subject must be:
+**Task:** Send this message to as a signed and encrypted attachment to an email message to the TA (williamwei.feng@mail.utoronto.ca). The email subject must be:
 
 ```
 [CSCD27] A1 1.1
 ```
 
-If you have chosen not to upload your public key on the MIT keyserver, please attach a copy of your public key as well so that we can check the signature.
-
 ### 1.3 GPG: Revoking a Key [5 marks]
 
-There are several reasons why you might need to revoke an existing GPG key; for example: your private key is stolen or compromised, you are replacing your key with a stronger one, or, you forget your key's passphrase (it happens, surprisingly often ;-). If your private key is stolen/compromised, or you forget the passphrase, you won't be able to read messages sent to you and encrypted with your public key. In the stolen/compromised case, if you also lose the passphrase you won't be able to stop the thief from using your private key to sign messages as you. In the lost passphrase situation, you won't even be able to revoke your public key.
+**Task:** If you have not done so yet in [lab 02](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/labs/02/README.md), create a revocation certificate.
 
-To actually use a revocation certificate to revoke a key, you would import it into your keyring, at which point the associated key would become unusable.
-
-Note, you are *not* asked to perform the keyring-import step as part of this problem, just to generate the revocation certificate for possible future use (e.g. you forget your passphrase). In general, a revocation certificate should be kept secure, so that someone else can't use it to revoke one of your working keys.
 
 ___
 
@@ -65,37 +67,36 @@ RC4 is a stream cipher, meaning that it processes (encrypts/decrypts) data a byt
 
 The algorithm, based on a 256-byte state array, operates in two stages, first initializing its key schedule (like AES's init_key_schedule) with a user-supplied key, and then generating a sequence of pseudo-random bytes to be XOR'd with plaintext to encrypt or with ciphertext to decrypt.
 
-In the following, we ask you to complete the Python [starter code](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/assignments/01/code/rc4/rc4.py") (Python 3) that implements RC4 and provide various supports to encrypt and decrypt textfiles, binary files and wave files. For each function, make sure to adhere to the type signature given in the Docstring. Implement the utilities functions that will allow you to convert between UTF-8 strings, ASCII-armored strings and their binary representation (`Bytes` in Python). Finally, implement a set of tests to convince yourself that your functions behave as expected. The marker(s) will supply their own tests for your code. Your implementation will be marked based on correctness, adequacy of the tests, and adherence to good coding practices such as modularity, clear design, appropriate use of comments, descriptive variable names, etc.
+In the following, we ask you to complete the Python [starter code](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/assignments/01/code/rc4/rc4.py) (Python 3) that implements RC4 and provide various supports to encrypt and decrypt textfiles, binary files and wave files. For each function, make sure to adhere to the type signature given in the Docstring. Implement the utilities functions that will allow you to convert between UTF-8 strings, ASCII-armored strings and their binary representation (`Bytes` in Python). Finally, implement a set of tests to convince yourself that your functions behave as expected. The marker(s) will supply their own tests for your code. Your implementation will be marked based on correctness, adequacy of the tests, and adherence to good coding practices such as modularity, clear design, appropriate use of comments, descriptive variable names, etc.
 
 ### 2.1 RC4 encryption and decryption [20 marks]
 
-Implement the basic RC4 encryption/decryption function called `rc4`. This function relies on two sub-functions called `ksa` and `prga` for which the specification and pseudo-code can be found in [Wikipedia](https://en.wikipedia.org/wiki/RC4).
+**Task:** Complete the basic RC4 encryption/decryption function called `rc4`. This function relies on two sub-functions called `ksa` and `prga` for which the specification and pseudo-code can be found in [Wikipedia](https://en.wikipedia.org/wiki/RC4).
 
 ### 2.2 Textfile support [10 marks]
 
-Implement the RC4 textfile file support functions called `rc4_textfile_encrypt` and `rc4_textfile_decrypt` that respectively encrypt and decrypt a textfile into its ASCII-armored cipher (Base64 encoding) and vice versa.
+**Task:** Complete the RC4 textfile file support functions called `rc4_textfile_encrypt` and `rc4_textfile_decrypt` that respectively encrypt and decrypt a textfile into its ASCII-armored cipher (Base64 encoding) and vice versa.
 
 ### 2.3 Binary file support [5 marks]
 
-Implement the RC4 binary file support function called `rc4_binary` that encrypts/decrypts a binary file.
+**Task:** Complete the RC4 binary file support function called `rc4_binary` that encrypts/decrypts a binary file.
 
 ### 2.4 Wave file support [5 marks]
 
 An interesting application of RC4 is stream-encrypting WAV-format audio files, using the Python "wave" module. Implement the RC4 wave support function called `rc4_wave` that encrypts/decrypts a wave file that remains playable by audio players.
 
-Here's a sample
-[unencrypted WAV file](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/assignment/01/code/rc4/neil.wav) and it's companion
-[encrypted WAV file](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/assignment/01/code/rc4/neilc.wav)
+Here are samples below. Beware, this encrypted file may play at loud volume using headphones connected to a BV-473 machine.
 
-Beware, this encrypted file may play at loud volume using headphones connected to a BV-473 machine.
+- [unencrypted WAV file](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/assignment/01/media/neil.wav) and it's companion
+- [encrypted WAV file](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/assignment/01/media/neilc.wav)
 
 You can convert audio in various formats to .wav using this [online tool](http://audio.online-convert.com/convert-to-wav).
 
-To keep file-sizes small, we're going to use mono rather than stereo audio, and use 8-bit sampling rather than a higher sample rate. Together these 2 choices cause audio to be stored as a sequence of 1-byte samples, rather than e.g. 4-byte samples for stereo/16-bit, which is convenient for RC4-encryption/decryption since RC4 works on a byte-stream. You can choose whatever sampling rate you wish; higher sampling rate will translate to larger file sizes.
+To keep file-sizes small, we are going to use mono rather than stereo audio, and use 8-bit sampling rather than a higher sample rate. Together these 2 choices cause audio to be stored as a sequence of 1-byte samples, rather than e.g. 4-byte samples for stereo/16-bit, which is convenient for RC4-encryption/decryption since RC4 works on a byte-stream. You can choose whatever sampling rate you wish; higher sampling rate will translate to larger file sizes.
 
-Use the Python `wave` module to implement support encryption and decryption of audio encoded in `.wav` format. See the [python documentation](https://docs.python.org/2/library/wave.html) for more details.
+**Task:** Complete the RC4 wave file file support function called `rc4_wave` that encrypts/decrypts audio files encoded in `.wav` format.
 
-To simplify your `.wav` implementation, you need only support mono (not stereo) audio, and you can assume that each audio sample fits in a single byte. These restrictions imply that each audio sample will fit in a single byte, for ease of interoperation with RC4's byte-oriented keystream.
+For this tasks, you can use the Python `wave` module (see the [python documentation](https://docs.python.org/2/library/wave.html) for more details). To simplify your implementation, you need only support mono (not stereo) audio, and you can assume that each audio sample fits in a single byte. These restrictions imply that each audio sample will fit in a single byte, for ease of interoperation with RC4's byte-oriented keystream.
 
 In order to make an encrypted `.wav` file playable, it must include proper `.wav` format header information, and this format information must not itself be encrypted, otherwise you will not be able to play the encrypted file. So, when your algorithm encrypts plaintext that is not a `.wav` file, it will completely encrypt the file, but when encrypting a `.wav` file, it will leave the `.wav` header unencrypted, and encrypt the audio sample data.
 
@@ -177,7 +178,9 @@ The mechanism used in your attack will be similar to the example covered in the 
 
 You can verify that your attack has worked by loading the above marks-query URL in a browser. It should display the mark you have set.
 
-To assist you with the mechanics of interacting with a Web server, you may choose to use this [starter code](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/assignments/01/code/md5/hash_extension.py) (Python 2.7).
+**Task:** Complete the [starter code](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/assignments/01/code/md5/hash_extension.py) (Python 2.7).
+
+This starter code contains sample code that shows how to interact with a Web server.
 
 ### 3.2 MD5 Hash Collisions [15 marks]
 
@@ -192,11 +195,11 @@ The first says that given `H(x) = h` it must be computationally infeasible to fi
 
 In a paper presented at the EuroCrypt 2005 conference, Xiaoyun Wang and Hongbo Yu described a [computationally-efficient algorithm](http://merlot.usc.edu/csac-f06/papers/Wang05a.pdf) for finding different byte-sequences with identical MD5 hash values. This breakthrough-result signalled that MD5 was no longer suitable as a secure guarantor of message-integrity.
 
-Marc Stevens et al extended this result in a EuroCrypt 2007 [conference paper](http://www.win.tue.nl/hashclash/EC07v2.0.pdf") that showed how to find collisions, starting from 2 distinct files (the chosen prefixes) that are extended until a collision is found. This process required about 2<sup>50</sup> hash function calls.
+Marc Stevens et al extended this result in a EuroCrypt 2007 [conference paper](http://www.win.tue.nl/hashclash/EC07v2.0.pdf) that showed how to find collisions, starting from 2 distinct files (the chosen prefixes) that are extended until a collision is found. This process required about 2<sup>50</sup> hash function calls.
 
 This same research group also implemented much faster algorithms for finding random pairs of colliding bitstrings, that have an expected cost of just 2<sup>39</sup> hash-function calls. We will use the MD5 collision-finding tool [hashclash](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/assignments/01/code/md5/hashclash) (compiled for the Mathlab server from the [](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/assignments/01/code//md5/fastcoll_v1.0.0.5-1_source.zip)) from this group in this problem.
 
-This warmup exercise will give you practice working with the hashclash MD5 collision-generator.
+**Task:** This warmup exercise will give you practice working with the hashclash MD5 collision-generator.
 
 - Use hashclash to generate a pair of files with identical MD5 hash values:
 
@@ -272,9 +275,7 @@ cat prefix2 suffix &gt; pgm2.py
 
 Next, run the 2 programs to check the sha256 values of their bitstrings. Finally, verify that `pgm1.py` and `pgm2.py` have identical MD5 hash values,
 
-Your challenge is to extend the above approach by writing a pair of Python programs, `nice.py` and `nasty.py`, that hash to the same MD5 value, but that exhibit visibly different, and preferably interesting and/or amusing behavior.
-
-For example, `nice.py` might print a "fortune" for the user, and `nasty.py` might pretend that it is erasing all the user's files.
+**Task:** Your challenge is to extend the above approach by writing a pair of Python programs, `nice.py` and `nasty.py`, that hash to the same MD5 value, but that exhibit visibly different, and preferably interesting and/or amusing behavior. For example, `nice.py` might print a "fortune" for the user, and `nasty.py` might pretend that it is erasing all the user's files.
 
 ___
 

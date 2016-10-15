@@ -1,4 +1,4 @@
-# CSCD27 Lab 4: Hash extension attack
+# CSCD27 Lab 4: Hash-length Extension
 
 The use of secure hash functions such as MD5 or SHA to protect the integrity of messages and documents is widespread; however, in many situations, these hash functions fail to provide adequate security protection. Intuitively, we want a construct that behaves like a pseudo-random function, and unfortunately, secure hash functions do not behave that way.
 
@@ -6,7 +6,7 @@ A crucial weakness of collision-resistant hash functions based on the Merkle-Dam
 
 ## Example of a hash-length extension
 
-Before attempting to construct a length-extension attack, you should work through this simple example of the process, using a Python implementation of the MD5 hash algorithm, [md5p.py](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/assignments/01/code/md5/md5p_py), linked to the assignments Web page.
+Before attempting to construct a length-extension attack, you should work through this simple example of the process, using a Python implementation of the MD5 hash algorithm, [md5p.py](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/assignments/01/code/md5/md5p.py), linked to the assignments Web page.
 
 Suppose you want to protect the following message against tampering, by computing its MD5 hash value:  "This is the end of the message."
 
