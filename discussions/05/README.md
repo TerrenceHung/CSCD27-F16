@@ -1,2 +1,33 @@
 # CSCD27 Discussion 5
 
+## Network Insecurity
+
+Alice wants to access the web server Bob.com via HTTP. However, Mallory wants to either eavesdrop or hijack (MitM) the messages sent back and forth between the two.
+
+For that, we consider that Mallory could control hosts located on different network locations such as either:
+
+1. a **LAN host:** that is on the same broadcast network (Ethernet, WiFi) as Alice
+2. a **route host:** (either a gateway or a router) that is on the routing path between Alice and Bob
+3. a **remote host:** that is somewhere on the Internet but not on any network between Alice and Bob
+
+5.1 For each host locations, explain in technical details how Mallory can either eavesdrop or hijack (MitM) the communication between Alice and Bob.com.
+
+| Host Setting           | Eavesdropping            | MitM                   |
+| -----------------------|:-----------------------:|:-----------------------:|
+| LAN Host               |                         |                         |
+| Route Host             |                         |                         |
+| Remote Host            |                         |                         |
+
+
+ In your analyze, you can consider the following attacks (non-exhaustive):
+
+- Packet sniffing
+- ARP-cache poisoning
+- IP Hijacking (a.k.a BGP hijacking)
+- DNS Spoofing
+
+## HTTPs as a counter-measure
+
+Let us now consider that Alice access `Bob.com` via HTTPs.
+
+5.2 Would HTTPs defeat none, some or all attacks identified in 5.1? If so, how could Mallory defeat HTTPs (assuming that generating a valid certificate for Bob.com is not an option)?
