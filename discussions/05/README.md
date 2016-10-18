@@ -6,7 +6,7 @@ Alice wants to access the web server Bob.com via HTTP. However, Mallory wants to
 
 We consider different scenarios in which Mallory controls a host located in different part of the network. These different hosts can be typed as either:
 
-1. a **LAN ** host that is on the same broadcast network (Ethernet or WiFi) as Alice
+1. a **LAN** host that is on the same broadcast network (Ethernet or WiFi) as Alice
 2. a **route** host (either a gateway or a router) that is on the routing path between Alice and Bob
 3. a **remote** host that is somewhere on the Internet but not necessarily on a network between Alice and Bob
 
