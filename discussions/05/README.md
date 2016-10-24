@@ -23,7 +23,7 @@ We consider different scenarios in which Mallory controls a host located in diff
 
 - Packet sniffing
 - ARP-cache poisoning
-- IP Hijacking (a.k.a BGP hijacking)
+- Route Hijacking (BGP)
 - DNS Spoofing
 
 ## HTTPs as a counter-measure

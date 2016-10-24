@@ -40,7 +40,7 @@ Over time, it has evolved into an open standard, called OpenPGP. Several impleme
 
 ### 1.1 PGP/GPG in practice [5 marks]
 
-**Task:** If you have not done so yet in [lab 02](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/labs/02/README.md), create a public-private key pair and publish is on the MIT keyserver and export your public key as an ASCII-armored certificate.
+**Task:** If you have not done so yet in [lab 02](https://github.com/ThierrySans/CSCD27-F16/tree/master/labs/02), create a public-private key pair and publish is on the MIT keyserver and export your public key as an ASCII-armored certificate.
 
 ### 1.2 Course Feedback [10 marks]
 
@@ -54,7 +54,7 @@ What topic would you most like to see explained in more depth in lecture or disc
 
 ### 1.3 GPG: Revoking a Key [5 marks]
 
-**Task:** If you have not done so yet in [lab 02](https://raw.githubusercontent.com/ThierrySans/CSCD27-F16/master/labs/02/README.md), create a revocation certificate.
+**Task:** If you have not done so yet in [lab 02](https://github.com/ThierrySans/CSCD27-F16/tree/master/labs/02), create a revocation certificate.
 
 
 ___
