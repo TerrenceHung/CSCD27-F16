@@ -7,7 +7,7 @@ These two companies have hired you as a consultant to help them to enable their 
 1. explain whether it is a valid concern by explaining them how they could be attacked or not
 2. help them secure their networks by providing the best and the most straightforward solution to their concern
 
-6.1 they are concerned that the network is opened to the "outside", anybody could connect to their servers?
+6.1 they are concerned that if the network is opened to the "outside", anybody could connect to their servers?
 
 6.2 they are concerned that someone outside of their network might be able to eavesdrop or hijack their communication?
 
