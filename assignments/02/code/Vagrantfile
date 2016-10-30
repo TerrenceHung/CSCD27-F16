@@ -1,0 +1,28 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+
+  config.vm.define "mallory", autostart: true do |mallory|
+    mallory.vm.box = "blackfin/kali"
+    mallory.vm.network "private_network", ip: "10.0.1.102"
+    mallory.vm.provider 'virtualbox' do |v|
+      # v.gui = true
+      # v.memory = "1024"
+      v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+    end
+  end
+
+  config.vm.define "alice", autostart: true do |alice|\
+    alice.vm.box = "ubuntu/xenial64"
+    alice.vm.network "private_network", ip: "10.0.1.101"
+    alice.vm.provision "shell", path: "alice/setup.sh"
+    alice.vm.provision "shell", run: "always", inline: "sudo route add default gw 10.0.1.100"
+  end
+
+  config.vm.define "gateway", autostart: true do |gateway|
+    gateway.vm.box = "ubuntu/xenial64"
+    gateway.vm.network "private_network", ip: "10.0.1.100"
+    gateway.vm.provision "shell", path: "gateway/setup.sh"
+  end
+end
