@@ -3,11 +3,18 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.define "gateway", autostart: true do |gateway|
-    gateway.vm.box = "ubuntu/trusty64"
-    gateway.vm.box_url = "/courses/webspace/cscd27f16/assignment/02/boxes/ubuntu-trusty64_virtualbox.box"
-    gateway.vm.network "private_network", ip: "10.0.1.100"
-    gateway.vm.provision "shell", path: "gateway/setup.sh"
+  config.vm.define "mallory", autostart: true do |mallory|
+    mallory.vm.box = "ubuntu/trusty64"
+    mallory.vm.box_url = "/courses/webspace/cscd27f16/assignment/02/boxes/ubuntu-trusty64_virtualbox.box"
+    mallory.vm.network "private_network", ip: "10.0.1.102"
+    mallory.vm.network "forwarded_port", guest: 8080, host: 8080
+    mallory.vm.provision "shell", path: "mallory/setup.sh"
+    mallory.ssh.forward_x11 = true
+    mallory.vm.provider 'virtualbox' do |v|
+      # v.gui = true
+      # v.memory = "1024"
+      v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+    end
   end
 
   config.vm.define "alice", autostart: true do |alice|
@@ -18,17 +25,11 @@ Vagrant.configure(2) do |config|
     alice.vm.provision "shell", run: "always", inline: "sudo route add default gw 10.0.1.100"
   end
 
-  config.vm.define "mallory", autostart: true do |mallory|
-    mallory.vm.box = "ubuntu/trusty64"
-    mallory.vm.box_url = "/courses/webspace/cscd27f16/assignment/02/boxes/ubuntu-trusty64_virtualbox.box"
-    mallory.vm.network "private_network", ip: "10.0.1.102"
-    mallory.vm.provision "shell", path: "mallory/setup.sh"
-    mallory.ssh.forward_x11 = true
-    mallory.vm.provider 'virtualbox' do |v|
-      # v.gui = true
-      # v.memory = "1024"
-      v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
-    end
+  config.vm.define "gateway", autostart: true do |gateway|
+    gateway.vm.box = "ubuntu/trusty64"
+    gateway.vm.box_url = "/courses/webspace/cscd27f16/assignment/02/boxes/ubuntu-trusty64_virtualbox.box"
+    gateway.vm.network "private_network", ip: "10.0.1.100"
+    gateway.vm.provision "shell", path: "gateway/setup.sh"
   end
 
 end
