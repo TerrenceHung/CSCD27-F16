@@ -9,8 +9,8 @@ sudo iptables -F
 sudo iptables -F -t nat
 sudo iptables -F -t mangle
 
-sudo iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
-sudo iptables -A FORWARD -i enp0s3 -o enp0s8 -m state --state RELATED,ESTABLISHED -j ACCEPT
-sudo iptables -A FORWARD -i enp0s8 -o enp0s3 -j ACCEPT
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
 
 sudo bash -c 'iptables-save > /etc/iptables-up.rules'
