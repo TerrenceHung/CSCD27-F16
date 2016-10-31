@@ -31,6 +31,7 @@ $ vboxmanage setproperty machinefolder ~/cscd27f16_space/.VirtualBox
 Inside `cscd27f16_space`, clone the Github course repository:
 
 ```shell
+$ cd cscd27f16_space
 $ git clone https://github.com/ThierrySans/CSCD27-F16
 ```
 
@@ -45,13 +46,13 @@ $ vagrant up
 
 Assuming that you have cloned the Github repository for D27 and that you are in `SCD27-F16/assignments/02/code`
 
-1. Starting all VMs
+- Starting all VMs
 
 ```shell
 $ vagrant up
 ```
 
-2. SSHing into VMs
+- SSHing into VMs
 
 ```shell
 $ vagrant ssh mallory
@@ -61,14 +62,20 @@ Once connected to Mallory, you should see the following prompt: `vagrant@mallory
 
 While working on the assignment or the labs, you will be asked to performed actions *as Mallory* or *as Alice* by using the proper VMs. Therefore, it is *strongly recommended* to have 3 terminal windows (or tabs) open:
 
-- one for the host (your actual ubuntu lab machine)
-- one for Alice
-- and two for Mallory
+ - one for the host (your actual ubuntu lab machine)
+ - one for Alice
+ - and two for Mallory
 
-3. Stopping all VMs (strongly recommended once you are done working)
+- Stopping all VMs (strongly recommended once you are done working)
 
 ```shell
-$ vagrant up
+$ vagrant halt
+```
+
+- Stop and restart all VMs
+
+```shell
+$ vagrant reload
 ```
 
 ## Verify the internet connectivity

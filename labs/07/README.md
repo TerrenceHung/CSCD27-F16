@@ -78,7 +78,7 @@ In assignment 2, you will be asked to capture a TCP stream, save it to a text fi
 1. select one of the packets in the TCP stream
 2. click right and select "Follow TCP Stream" (do not close the modal window this time)
 3. click on "Save As" and save the file under the path `/vagrant/mallory/results/` to make it accessible from the host
-4. as a verification step, open this file on the host using any text editor and check that the right TCP stream was captured
+4. as a verification step, open this file on the host using any text editor and check that the right TCP stream was captured. The file can be found at: `~/cscd27f16_space/CSCD27-F16/assignments/02/code/mallory/results/`
 
 From this TCP stream, can Mallory see:
 
@@ -90,7 +90,7 @@ From this TCP stream, can Mallory see:
 *As Alice*, initiate an HTTPS communication:
 
 ```shell
-vagrant@alice:~$ curl http://mathlab.utsc.utoronto.ca/
+vagrant@alice:~$ curl https://mathlab.utsc.utoronto.ca/
 ```
 
 While eavesdropping on this TCP stream, can Mallory see:
