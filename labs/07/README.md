@@ -39,13 +39,13 @@ In this part, Mallory will capture the communication between Alice and the Mathl
 
 1. TCP 3-way handshake to initiate the communication
 
-+----+--------+--------+----------+---------------+
-|    | from   |  to    | protocol |  Info         |
-+====+========+========+==========+===============+
-|  1 | client | server | TCP      | TCP SYN       |
-|  2 | server | client | TCP      | TCP SYN-ACK   |
-|  3 | client | server | TCP      | TCP ACK       |
-+----+--------+--------+----------+---------------+
+ +----+--------+--------+----------+---------------+
+ |    | from   |  to    | protocol |  Info         |
+ +====+========+========+==========+===============+
+ |  1 | client | server | TCP      | TCP SYN       |
+ |  2 | server | client | TCP      | TCP SYN-ACK   |
+ |  3 | client | server | TCP      | TCP ACK       |
+ +----+--------+--------+----------+---------------+
 
 2. Data exchange
 
