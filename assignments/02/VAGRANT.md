@@ -25,7 +25,7 @@ By default in the linux lab, vagrant stores the virtual machines in your home di
 ```shell
 $ echo "export VAGRANT_HOME=~/cscd27f16_space/.vagrant.d" >> ~/.profile
 $ source ~/.profile
-$ vboxmanage setproperty ~/cscd27f16_space/VirtualBox
+$ vboxmanage setproperty machinefolder ~/cscd27f16_space/VirtualBox
 ```
 
 ## Using the VMs
