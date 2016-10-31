@@ -37,7 +37,7 @@ The server should respond with the corresponding HTML document:
 
 In this part, Mallory will capture the communication between Alice and the Mathlab server. At the application layer, there are two messages exchanges: 1) HTTP request (from the client to the server) and 2) the HTTP response (from the server to the client). However, at the TCP layer, these two messages generates several TCP messages that we call the "TCP stream". The TCP stream can be divided into three parts:
 
-1. TCP 3-way handshake to initiate the communication
+TCP 3-way handshake to initiate the communication
 
 |    | from   |  to    | protocol |  Info         |
 |----|:------:|:------:|:--------:|:-------------:|
@@ -45,7 +45,7 @@ In this part, Mallory will capture the communication between Alice and the Mathl
 |  2 | server | client | TCP      | TCP SYN-ACK   |
 |  3 | client | server | TCP      | TCP ACK       |
 
-2. Data exchange
+Data exchange
 
 |    | from   |  to    | protocol |  Info         |
 |----|:------:|:------:|:--------:|:-------------:|
@@ -54,7 +54,7 @@ In this part, Mallory will capture the communication between Alice and the Mathl
 |  6 | server | client | HTTP     | HTTP response |
 |  7 | client | server | TCP      | TCP ACK       |
 
-3. TCP 4-way handshake to terminiate the communication
+TCP 4-way handshake to terminiate the communication
 
 |    | from   |  to    | protocol |  Info         |
 |----|:------:|:------:|:--------:|:-------------:|
