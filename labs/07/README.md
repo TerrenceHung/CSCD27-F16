@@ -12,11 +12,11 @@ In this part, Mallory will start Wireshark and capture the traffic on `eth1`:
 vagrant@mallory:~$ sudo wireshark &> /dev/null &
 ```
 
-Ignore the error message at the beginning and, in the column select from the main panel, select `eth1` and click the green `start` button.
+Ignore the error message at the beginning and, in the "capture" column, select `eth1` and click the green `start` button.
 
 ## Generating HTTP traffic
 
-In this part, Alice will fetch a webpage on the mathlab server (HTTP request) and the server will return the HTML document (HTTP response):
+In this part, Alice will fetch a webpage on the Mathlab server (HTTP request) and the server will return the HTML document (HTTP response):
 
 *As Alice*, get the webpage (using curl):
 
@@ -71,7 +71,7 @@ In this part, Mallory will capture the communication between Alice and the Mathl
 
 ## Saving a TCP stream
 
-In assignment 2, you will be asked to capture a TCP stream, save it to a text file and submit it as a proof that the work has been completed.
+In assignment 2, you will be asked to capture a TCP stream, save it to a text file and submit it to show that the work has been completed.
 
 *As Mallory*, capture TCP stream with Wireshark:
 
@@ -82,20 +82,20 @@ In assignment 2, you will be asked to capture a TCP stream, save it to a text fi
 
 From this TCP stream, can Mallory see:
 
-- which page Alice has been requested?
-- the HTML document returned by the server?
+- which page Alice has been requested (HTTP request)?
+- the HTML document returned by the server (HTTP response)?
 
 ## Generating HTTPs traffic
 
-How could Mallory eavesdrop HTTPS communication this time:
+*As Alice*, initiate an HTTPS communication:
 
 ```shell
 vagrant@alice:~$ curl http://mathlab.utsc.utoronto.ca/
 ```
 
-When the attack succeeds, can Mallory see:
+While eavesdropping on this TCP stream, can Mallory see:
 
-- which page Alice has been requested?
+- which web page Alice has been requested?
 - the HTML document returned by the server?
 
 

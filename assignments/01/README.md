@@ -18,7 +18,7 @@ Submit on the `mathlab.utsc.utoronto.ca` system your solutions:
 
 - for part 1: `public.cert` and `revoke.cert`
 - for part 2: `rc4.py`
-- for part 4: `extension.py`, `md5_collisions.txt`, `nice.py`, and `nasty.py`
+- for part 3: `extension.py`, `md5_collisions.txt`, `nice.py`, and `nasty.py`
 
 ```shell
 submit -c cscd27f16 -a a1 public.cert revoke.cert rc4.py extension.py md5_collisions.txt nice.py nasty.py
