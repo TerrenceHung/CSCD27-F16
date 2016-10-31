@@ -25,17 +25,29 @@ By default in the linux lab, vagrant stores the virtual machines in your home di
 ```shell
 $ echo "export VAGRANT_HOME=~/cscd27f16_space/.vagrant.d" >> ~/.profile
 $ source ~/.profile
-$ vboxmanage setproperty machinefolder ~/cscd27f16_space/VirtualBox
+$ vboxmanage setproperty machinefolder ~/cscd27f16_space/.VirtualBox
+```
+
+Inside `cscd27f16_space`, clone the Github course repository:
+
+```shell
+$ git clone https://github.com/ThierrySans/CSCD27-F16
+```
+
+The VMs are defined in the file `Vagrantfile` provided for assignment 02. Start all VMs for the first time:
+
+```shell
+$ cd ~/cscd27f16_space/CSCD27-F16/assignments/02/code
+$ vagrant up
 ```
 
 ## Using the VMs
 
-Assuming that you have cloned the Github repository for D27:
+Assuming that you have cloned the Github repository for D27 and that you are in `SCD27-F16/assignments/02/code`
 
 1. Starting all VMs
 
 ```shell
-$ cd CSCD27-F16/assignments/02
 $ vagrant up
 ```
 
