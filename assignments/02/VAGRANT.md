@@ -29,9 +29,12 @@ $ source ~/.profile
 
 ## Using the VMs
 
+Assuming that you have cloned the Github repository for D27:
+
 1. Starting all VMs
 
 ```shell
+$ cd CSCD27-F16/assignments/02
 $ vagrant up
 ```
 
