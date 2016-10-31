@@ -47,25 +47,21 @@ In this part, Mallory will capture the communication between Alice and the Mathl
 
 2. Data exchange
 
-+----+--------+--------+----------+---------------+
 |    | from   |  to    | protocol |  Info         |
-+====+========+========+==========+===============+
+|----|:------:|:------:|:--------:|:-------------:|
 |  4 | client | server | HTTP     | HTTP request  |
 |  5 | server | client | TCP      | TCP ACK       |
 |  6 | server | client | HTTP     | HTTP response |
 |  7 | client | server | TCP      | TCP ACK       |
-+----+--------+--------+----------+---------------+
 
 3. TCP 4-way handshake to terminiate the communication
 
-+----+--------+--------+----------+---------------+
 |    | from   |  to    | protocol |  Info         |
-+====+========+========+==========+===============+
+|----|:------:|:------:|:--------:|:-------------:|
 |  8 | client | server | TCP      | TCP FIN-ACK   |
 |  9 | server | client | TCP      | TCP ACK       |
 | 10 | server | client | TCP      | TCP FIN-ACK   |
 | 11 | client | server | TCP      | TCP ACK       |
-+----+--------+--------+----------+---------------+
 
 *As Mallory*, isolate a TCP stream in Wireshark:
 
