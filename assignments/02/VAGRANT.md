@@ -72,7 +72,7 @@ While working on the assignment or the labs, you will be asked to performed acti
 $ vagrant halt
 ```
 
-- Stop and restart all VMs
+-Stop and restart all VMs
 
 ```shell
 $ vagrant reload
@@ -102,7 +102,7 @@ vagrant@alice:~$ ping 10.0.1.100
 vagrant@gateway:~$ sh /vagrant/gateway/setup.sh
 ```
 
-## Reset all VMs and/or Reset Vagrant
+## Reset all VMs, Reset Vagrant and Reset VirtualBox
 
 If something goes wrong with vagrant you can either reset all VMs and/or re-initialized vagrant.
 
@@ -122,4 +122,10 @@ $ rm -Rf .vagrant
 
 ```shell
 $ rm -Rf ~/cscd27f16_space/.vagrant.d
+```
+
+3. re-initialize VirtualBox all together
+
+```shell
+$ rm -Rf ~/cscd27f16_space/.VirtualBox
 ```
