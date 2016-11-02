@@ -34,7 +34,7 @@ In this part, rather than disrupting the communication between Alice and the Gat
 *As Mallory* (terminal 2), redirect HTTP traffic (port 80) to port 8080 (Mallory's fake server)
 
 ```shell
-vagrant@mallory:~$ sudo bash -e "echo '1' > /proc/sys/net/ipv4/ip_forward"
+vagrant@mallory:~$ sudo bash -c "echo '1' > /proc/sys/net/ipv4/ip_forward"
 vagrant@mallory:~$ sudo iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 8080
 ```
 
