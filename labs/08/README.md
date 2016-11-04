@@ -19,7 +19,7 @@ In this part, Mallory wants to disrupt the communication between Alice and the G
 *As Mallory (terminal 1), broadcast spoofed ARP messages to Alice (10.0.1.101) pretending to be the gateway (10.0.1.100):
 
 ```shell
-vagrant@mallory:~$ sudo arpspoof -i eth1 -t 10.0.1.101 10.1.100
+vagrant@mallory:~$ sudo arpspoof -i eth1 -t 10.0.1.101 10.0.1.100
 ```
 
 Finally:
