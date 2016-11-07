@@ -78,7 +78,7 @@ vagrant@alice:~$ curl -v http://mathlab.utsc.utoronto.ca/courses/cscd27f16/assig
 *As Alice*, use the `-L` option in curl to follow the HTTPS redirects automatically (like most of web browsers do):
 
 ```shell
-vagrant@alice:~$ curl -v http://mathlab.utsc.utoronto.ca/courses/cscd27f16/assignment/02/server/
+vagrant@alice:~$ curl -L http://mathlab.utsc.utoronto.ca/courses/cscd27f16/assignment/02/server/
 ```
 
 ## SSLStripping attack
