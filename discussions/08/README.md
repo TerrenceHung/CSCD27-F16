@@ -9,10 +9,11 @@
 8.3 What is a zero-day attack and when does it occurs?
 
 8.4 In a "stack smashing attack",
-    - what kind of programming error does the attacker want to exploit?
-    - what does the attacker aim to overwrite?
-    - What does the attacker aim to inject?
-    - when the attack succeeds, what privileges does the attacker get?
+
+- what kind of programming error does the attacker want to exploit?
+- what does the attacker aim to overwrite?
+- What does the attacker aim to inject?
+- when the attack succeeds, what privileges does the attacker get?
 
 ## Operating System Insecurity
 
