@@ -1,6 +1,6 @@
 # CSCD27 Discussion 8
 
-## Program Security
+## Program Insecurity
 
 8.1 What is the difference between a vulnerability and an exploit?
 
