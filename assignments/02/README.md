@@ -44,7 +44,7 @@ As Mallory, you will run your attacks as if you were in a real environment. This
 To initiate communication between Alice and Bob, *as Alice*, run the following program:
 
 ```shell
-vagrant@alice:~$ python /vagrant/alice/client.py
+vagrant@alice:~$ nodejs /vagrant/alice/client.js
 Welcome alice your bank account balance is $31415
 Welcome alice your bank account balance is $31415
 ...
