@@ -58,7 +58,7 @@ For this part, make sure that you are able to complete [Lab 7](https://github.co
 
 **Task 1.1 (20 points):** As Mallory, eavesdrop all HTTP traffic sent between Alice and Bob. Isolate the TCP stream that contains an HTTP redirect (HTTP status code 301). Export it as `raw_http.txt` and submit it as your answer.
 
-**Task 1.2 (20 points):** As Mallory, eavesdrop the HTTPS traffic sent between Alice and Bob. Isolate the TCP stream that contains encrypted data. Export it as `raw_https.txt` and submit it as your answer.
+**Task 1.2 (20 points):** As Mallory, eavesdrop the HTTPS traffic sent between Alice and Bob. Isolate one TCP stream that contains encrypted data. Export it as `raw_https.txt` and submit it as your answer.
 
 ___
 
@@ -66,7 +66,11 @@ ___
 
 For this part, make sure that you are able to complete [Lab 8](https://github.com/ThierrySans/CSCD27-F16/tree/master/labs/08).
 
-**Task 2.1 (20 points):** As Mallory, perform a denial of service attack that will disrupt the communication between Alice and Bob. Isolate one or several **relevant** TCP streams that show the attack and its effects. Export it as `dos.txt` and submit it as your answer.
+**Task 2.1 (20 points):** As Mallory, perform a denial of service attack that will disrupt the communication between Alice and Bob.
+
+1. On your ubuntu machine, create a new text file and save it as `dos.txt`
+2. In wireshark, select one of the spoofed ARP message, copy the content (click right -> copy -> Summary (Text)) and paste it the file
+3. Do the same thing as (2) for a failed TCP message
 
 **Task 2.2 (20 points):** As Mallory, spoof the HTTP communication to return fake information to Alice. Isolate the TCP stream that shows the fake HTTP response. Export it as `spoof.txt` and submit it as your answer.
 
