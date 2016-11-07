@@ -21,6 +21,12 @@ Submit on the `mathlab.utsc.utoronto.ca` system your solutions:
 submit -c cscd27f16 -a a2 raw_http.txt raw_https.txt dos.txt spoof.txt mitm.txt
 ```
 
+- for Part 3: `secure.txt` (optional)
+
+```shell
+submit -c cscd27f16 -a a2 raw_http.txt raw_https.txt dos.txt spoof.txt mitm.txt secure.txt
+```
+
 ### Academic Integrity
 
 ___
@@ -38,11 +44,9 @@ As Mallory, you will run your attacks as if you were in a real environment. This
 To initiate communication between Alice and Bob, *as Alice*, run the following program:
 
 ```shell
-vagrant@alice:~$ nodejs /vagrant/alice/client.js
-body: Welcome thierry
-body: Welcome jing
-body: Welcome thierry
-body: Welcome jing
+vagrant@alice:~$ python /vagrant/alice/client.py
+Welcome alice your bank account balance is $31415
+Welcome alice your bank account balance is $31415
 ...
 ```
 
@@ -70,4 +74,6 @@ For this part, make sure that you are able to complete [Lab 8](https://github.co
 
 ## Part 3. Securing the communication
 
-**coming soon**. This is a bonus points question.
+**Task 3 (10 bonus points):** Websites like Google and Facebook are not vulnerable to the SSLStripping attack. Investigate why, answer the questions in `part3.md` and submit it as your answer.
+
+
