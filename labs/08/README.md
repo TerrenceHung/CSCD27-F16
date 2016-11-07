@@ -54,6 +54,8 @@ Finally:
 
 ## Understanding HTTPS redirects
 
+Before starting with this part, make sure to stop any ARPSpoofing you might have started.
+
 As you may have noticed, it is possible to browse `mathlab.utsc.utoronto.ca` using both HTTP and HTTPS. You can also use curl to show the differences.
 
 *As Alice*, use the `-v` option in curl to show the difference between HTTP abd HTTPS:
