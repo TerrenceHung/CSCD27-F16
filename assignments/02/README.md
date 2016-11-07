@@ -56,7 +56,7 @@ This program does not terminate. As described previously, you are not allowed to
 
 For this part, make sure that you are able to complete [Lab 7](https://github.com/ThierrySans/CSCD27-F16/tree/master/labs/07).
 
-**Task 1.1 (20 points):** As Mallory, eavesdrop all HTTP traffic sent between Alice and Bob. Isolate the TCP stream that contains login/password and other information. Export it as `raw_http.txt` and submit it as your answer.
+**Task 1.1 (20 points):** As Mallory, eavesdrop all HTTP traffic sent between Alice and Bob. Isolate the TCP stream that contains an HTTP redirect (HTTP status code 301). Export it as `raw_http.txt` and submit it as your answer.
 
 **Task 1.2 (20 points):** As Mallory, eavesdrop the HTTPS traffic sent between Alice and Bob. Isolate the TCP stream that contains encrypted data. Export it as `raw_https.txt` and submit it as your answer.
 
