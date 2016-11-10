@@ -72,9 +72,9 @@ For this part, make sure that you are able to complete [Lab 8](https://github.co
 2. In wireshark, select one of the spoofed ARP message, copy the content (click right -> copy -> Summary (Text)) and paste it the file
 3. Do the same thing as (2) for a failed TCP message
 
-**Task 2.2 (20 points):** As Mallory, spoof the HTTP communication to return fake information to Alice. Isolate the TCP stream that shows the fake HTTP response. Export it as `spoof.txt` and submit it as your answer.
+**Task 2.2 (20 points):** As Mallory, spoof the HTTP communication to return fake information to Alice. Isolate the TCP stream that shows the fake HTTP request (with login and password) and response (with fake banking information). Export it as `spoof.txt` and submit it as your answer.
 
-**Task 2.3 (20 points):** As Mallory, execute a man-in-the-middle attack on the HTTPS communication to obtain both Alice's requests and the server's response in plaintext. Isolate the TCP streams that shows the HTTP communication between Alice and Mallory. Export it as `mitm.txt` and submit it as your answer.
+**Task 2.3 (20 points):** As Mallory, execute a man-in-the-middle attack on the HTTPS communication to obtain both Alice's requests (with username and password) and the server's response (banking information) in plaintext. Isolate the TCP stream that shows the HTTP communication between Alice and Mallory. Export it as `mitm.txt` and submit it as your answer.
 
 ## Part 3. Securing the communication
 
