@@ -89,7 +89,7 @@ The SSLStripping attack is a man-in-the-middle attack that aims at relaying mess
 
 ```shell
 vagrant@mallory:~$ cd sslstrip-0.9
-vagrant@mallory:~$ python sslstrip.py -a -w log.txt -l 8080 -f
+vagrant@mallory:~$ python sslstrip.py -a -w /vagrant/mallory/log.txt -l 8080 -f
 ```
 
 *As Mallory* (terminal 2), broadcast spoofed ARP messages as done previously
