@@ -4,7 +4,6 @@
 Vagrant.configure(2) do |config|
 
   config.vm.box = "minimal/trusty64"
-  # comment the next line if you work from your own laptop
   config.vm.box_url = "http://mathlab.utsc.utoronto.ca/courses/cscd27f16/assignment/02/boxes/trusty64_minimal.box"
 
   config.vm.define "gateway", autostart: true do |gateway|
