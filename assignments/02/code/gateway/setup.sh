@@ -1,5 +1,7 @@
 #!/bin/sh
 
+sudo DEBIAN_FRONTEND=noninteractive apt-get install iptables-persistent -y
+
 sudo sysctl -w net.ipv4.ip_forward=1
 
 sudo iptables -F
