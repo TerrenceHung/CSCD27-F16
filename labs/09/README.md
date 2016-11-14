@@ -252,7 +252,7 @@ ls -la vuln
 That could be useful if you were chasing a flag in a [CTF contest](https://en.wikipedia.org/wiki/Capture_the_flag):
 
 ```shell
-cd /home/root
+cd /root
 cat flag.txt
 ```
 
