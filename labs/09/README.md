@@ -1,8 +1,22 @@
 # CSCD27 Lab 9: Stack Smashing Attacks
 
-**Credits:** This lab is built from the excellent materials authored by *Dhaval Kapil*
-- [*Dhaval Kapil - Buffer Overflow Exploit*](https://dhavalkapil.com/blogs/Buffer-Overflow-Exploit/)
-- [*Dhaval Kapil - Shellcode Injection*](https://dhavalkapil.com/blogs/Shellcode-Injection/)
+In this lab, we will practice stack mashing attacks. In other words, we are going to find and exploit a buffer overflow in a compiled C program.
+
+## Setup
+
+Again, we need a dedicated VM to run our attacks.
+
+```
+cd ~/cscd27f16_space/CSCD27-F16/
+vagrant up
+```
+
+Once the vagrant has started, ssh into it and move to the `/vagrant` directory:
+
+```shell
+$ vagrant ssh
+[vagrant@trusty64:~] cd /vagrant
+```
 
 ## Attack 1: Buffer Overflow Exploit
 
@@ -241,6 +255,12 @@ That could be useful if you were chasing a flag in a [CTF contest](https://en.wi
 cd /home/root
 cat flag.txt
 ```
+
+## Credits
+
+This lab is built from the excellent materials authored by *Dhaval Kapil*
+- [*Dhaval Kapil - Buffer Overflow Exploit*](https://dhavalkapil.com/blogs/Buffer-Overflow-Exploit/)
+- [*Dhaval Kapil - Shellcode Injection*](https://dhavalkapil.com/blogs/Shellcode-Injection/)
 
 
 
