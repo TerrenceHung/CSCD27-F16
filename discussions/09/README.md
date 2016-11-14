@@ -1,9 +1,5 @@
 # CSCD27 Discussion 9
 
-**Credits:** This tutorial is built from the excellent materials authored by *David Evans* and *Dhaval Kapil*:
-- [*David Evans - x86 Assembly Guide*](http://www.cs.virginia.edu/~evans/cs216/guides/x86.html)
-- [*Dhaval Kapil - Buffer Overflow Exploit*](https://dhavalkapil.com/blogs/Buffer-Overflow-Exploit/)
-
 ## Some common registers
 
 source: [*Dhaval Kapil - Buffer Overflow Exploit*](https://dhavalkapil.com/blogs/Buffer-Overflow-Exploit/)
@@ -92,10 +88,12 @@ After the function returns (immediately following the call instruction), the cal
 The definition of the subroutine should adhere to the following rules at the beginning of the subroutine:
 
 1. Push the value of EBP onto the stack, and then copy the value of ESP into EBP using the following instructions:
+
     ```
     push ebp
     mov  ebp, esp
     ```
+
     This initial action maintains the base pointer, EBP. The base pointer is used by convention as a point of reference for finding parameters and local variables on the stack. When a subroutine is executing, the base pointer holds a copy of the stack pointer value from when the subroutine started executing. Parameters and local variables will always be located at known, constant offsets away from the base pointer value. We push the old base pointer value at the beginning of the subroutine so that we can later restore the appropriate base pointer value for the caller when the subroutine returns. Remember, the caller is not expecting the subroutine to change the value of the base pointer. We then move the stack pointer into EBP to obtain our point of reference for accessing parameters and local variables.
 2. Next, allocate local variables by making space on the stack. Recall, the stack grows down, so to make space on the top of the stack, the stack pointer should be decremented. The amount by which the stack pointer is decremented depends on the number and size of local variables needed. For example, if 3 local integers (4 bytes each) were required, the stack pointer would need to be decremented by 12 to make space for these local variables (i.e., sub esp, 12). As with parameters, local variables will be located at known offsets from the base pointer.
 3. Next, save the values of the callee-saved registers that will be used by the function. To save registers, push them onto the stack. The callee-saved registers are EBX, EDI, and ESI (ESP and EBP will also be preserved by the calling convention, but need not be pushed on the stack during this step).
@@ -107,3 +105,9 @@ After these three actions are performed, the body of the subroutine may proceed.
 3. Deallocate local variables. The obvious way to do this might be to add the appropriate value to the stack pointer (since the space was allocated by subtracting the needed amount from the stack pointer). In practice, a less error-prone way to deallocate the variables is to move the value in the base pointer into the stack pointer: mov esp, ebp. This works because the base pointer always contains the value that the stack pointer contained immediately prior to the allocation of the local variables.
 4. Immediately before returning, restore the caller's base pointer value by popping EBP off the stack. Recall that the first thing we did on entry to the subroutine was to push the base pointer to save its old value.
 5. Finally, return to the caller by executing a ret instruction. This instruction will find and remove the appropriate return address from the stack.
+
+## Credits
+
+This tutorial is built from the excellent materials authored by *David Evans* and *Dhaval Kapil*:
+- [*David Evans - x86 Assembly Guide*](http://www.cs.virginia.edu/~evans/cs216/guides/x86.html)
+- [*Dhaval Kapil - Buffer Overflow Exploit*](https://dhavalkapil.com/blogs/Buffer-Overflow-Exploit/)
