@@ -7,7 +7,7 @@ In this lab, we will practice stack mashing attacks. In other words, we are goin
 Again, we need a dedicated VM to run our attacks.
 
 ```
-cd ~/cscd27f16_space/CSCD27-F16/lab/09/code/
+cd ~/cscd27f16_space/CSCD27-F16/labs/09/code/
 vagrant up
 ```
 
