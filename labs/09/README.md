@@ -194,7 +194,7 @@ We know that the buffer starts 108 bytes before %ebp. But, how do we know the va
 
 5. Quit GDB
     ```
-    (gdb) quit()
+    (gdb) quit
     ```
 
 However this might not be the address of the buffer when we run the program outside of gdb. This is because things like environment variables and the name of the program along with arguments are also pushed on the stack. Although, the stack starts at the same address. The difference in the method of running the program will result in the difference of the address of the buffer. The difference will be around few bytes. Nevertheless, we know that the address is located somewhere around `0xffffd57c`.
