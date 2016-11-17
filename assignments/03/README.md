@@ -1,4 +1,4 @@
-# CSCD27 Assignment 2
+# CSCD27 Assignment 3
 
 So, You Want to be a Hacker? This is your chance. In this assignment you will have the chance to write your own exploits, penetrate a server and hack a web application:
 
