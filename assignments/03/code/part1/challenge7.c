@@ -24,8 +24,7 @@ int execute (char *cmd) {
    return system(cmd);
 }
 
-void echo(char *cmd)
-{
+void echo(char *cmd){
     char buffer[BUFFER_SIZE];
     printf("Enter your password:\n");
     scanf("%s", buffer);
