@@ -25,11 +25,8 @@ int echo(int client_fd){
 
         // format result
         int result_len = sprintf (result, "ECHO response (%d bytes received):\n", input_len);
-        printf("%d\n",result_len);
-        printf("%d\n",input_len);
         result_len = result_len + input_len;
         strcat(result, input);
-        printf("%d\n",result_len);
 
         // send result
         int err = send(client_fd, result, result_len, 0);

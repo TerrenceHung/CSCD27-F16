@@ -26,12 +26,14 @@ Most of the exercises proposed here are about understanding a vulnerability and 
 
 ___
 
-## Part 1 Vulnerability exploitation
+## Part 1. Vulnerability exploitation
 
 These challenges should be compiled within the following vagrant VM:
 ```shell
 cd ~/cscd27f16_space/CSCD27-F16/assignments/03/code/part1
 $ vagrant up
+$ vagrant ssh
+ubuntu-trusty64$ cd /vagrant
 ```
 ### Challenge 1 [10 points]: Overwriting a return-address with a buffer-overflow
 
