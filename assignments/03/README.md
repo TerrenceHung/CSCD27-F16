@@ -64,13 +64,13 @@ This challenge code uses "safe" string-copy function strncpy(), so you won't be 
 The command-line argument to challenge #4 names a file to be read. The file contains a 32-bit unsigned integer value N, followed by N 32-bit integer values. Your goal is to create a data file in this format that leads to a root shell, using the provided shellcode.
 
 - Compile: `gcc challenge4.c -o challenge4 -fno-stack-protector -m32 -z execstack`
-- Attack: `python attack4.py | ./challenge4 /dev/stdin`
+- Attack: `./challenge4 <(python attack4.py)`
 
 ### Challenge 5 [20 bonus points]: Shellcode in a no-execute stack environment
 
 An important defense against buffer overflows is use of a hardware/OS feature that flags the stack address space as non-executable. The processor will not execute any instructions that are stored on the stack. You can still use buffer-overflow tactics, such as overflowing variable storage space and modifying a return address, but you'll have to find a new mechanism for obtaining a root shell.
 
-- Compile: `gcc challenge5.c -o challenge5 -m32 -z execstack`
+- Compile: `gcc challenge5.c -o challenge5 -m32`
 - Attack: `./challenge3 $(python attack5.py)`
 - Reading: [Stack Smashing On A Modern Linux System](https://www.exploit-db.com/papers/24085/)
 
