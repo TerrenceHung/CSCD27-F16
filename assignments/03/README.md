@@ -102,7 +102,9 @@ ___
 
 ## Part 2. Penetration Testing
 
-Coming soon.
+###
+
+
 
 ___
 
