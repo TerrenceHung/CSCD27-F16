@@ -8,8 +8,8 @@ void echo(char *arg1, char *arg2){
      char input1[BUFFER_SIZE*2];
      char input2[BUFFER_SIZE];
 
-     strncpy(input1, arg1, sizeof(input1));
-     strncpy(input2, arg2, sizeof(input2));
+     strncpy(input1, arg1, BUFFER_SIZE);
+     strncpy(input2, arg2, BUFFER_SIZE);
      strcat(input1, input2);
      printf("Echo Response: %s\n", input1);
 }
