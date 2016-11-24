@@ -14,7 +14,23 @@ Good Luck!
 
 ## Instructions
 
+There are two kinds of challenges in this assignment:
+
+- Regular challenges (#1, #2, #3, #4, #12, #13, #14 and #15) are worth 100 points and are due Friday December 2nd 11:59pm (last day of class)
+- Bonus challenges (#5, #6, #7, #8, #9, #10, #11, #16, #17, #18) are worth 200 points and are due Friday 9th 11:59 pm
+
 ### Submission
+
+To submit the regular challenges:
+
+```shell
+submit -c cscd27f16 -a a3 attack1.py attack2.py attack3.py attack4.py attack12.txt attack13.txt attack14.txt attack15.txt
+```
+
+To submit the regular challenges:
+```shell
+submit -c cscd27f16 -a bonus attack5.py attack6.py attack7.py attack8.py attack9.nmap attack10.pdf attack11.txt attack16.txt attack17.txt attack18.txt
+```
 
 ### Academic Integrity
 
@@ -102,12 +118,60 @@ ___
 
 ## Part 2. Penetration Testing
 
-###
+These challenges requires a vulnerable vagrant box:
+```shell
+cd ~/cscd27f16_space/CSCD27-F16/assignments/03/code/part2
+$ vagrant up
+```
 
+You should **not** ssh into the vagrant.
 
+### Challenge 9 [10 bonus points]:
+
+### Challenge 10 [20 bonus points]:
+
+### Challenge 11 [20 bonus points]:
 
 ___
 
 ## Part 3. Web Security
 
-Coming soon.
+These challenges requires a web application hosted on a vagrant box:
+```shell
+cd ~/cscd27f16_space/CSCD27-F16/assignments/03/code/part3
+$ vagrant up
+```
+
+You should **not** ssh into the vagrant. Instead, all interactions can be done through the web browser by visiting [here](http://localhost:8080/).
+
+While using and attacking this web application, you may want to reset it. No need to reset the vagrant, you can just reset the web application by visiting [the reset page](http://localhost:8080/reset.php).
+
+### Challenge 12 [10 points]: Incomplete mediation
+
+The application was built in such a way that only authenticated users can delete their own messages. From the frontend, it seems correctly implemented as authenticated users can click on a delete button for their own messages only. However, it might not be correctly implemented in the backend. As Mallory, find an easy way to delete Alice's message that says "Mallory should not be trusted!".
+
+### Challenge 13 [10 points]: Content spoofing with CSRF attack
+
+The application seems to  be vulnerable to a cross-site request forgery attack. As Mallory, find and exploit this vulnerability to make Alice post a message that says "Mallory is a trustworthy person!".
+
+### Challenge 14 [15 points]: Stealing authentication token with XSS attack
+
+The application seems to be vulnerable to a cross-site scripting attack. As Mallory, find and exploit this vulnerability to steal Alice's authentication token and send it to the Mallory's website at `http://mathlab.com/?id=__alice_id__&utorid=__your_utorid__` (replace `__alice_id_` with alice's authentication token and `__your_utorid__` with your utorid).
+
+### Challenge 15 [15 points]: Bypassing authentication with SQLi attack
+
+The application seems to be vulnerable to an SQL injection attack. As Mallory, find and exploit this vulnerability to login as Alice and anything with her account.
+
+### Challenge 16 [15 bonus points]: Stealing login/password with XSS attack
+
+By exploiting the same cross-site scripting attack as in challenge #14, find a way to steal Alice's login and password instead of the authentication token.
+
+### Challenge 17 [15 bonus points]: Remote Code Execution with file inclusion Attack
+
+The application seems to be vulnerable to a file inclusion attack. As Mallory, find and exploit this vulnerability to install a reverse shell on the server.
+
+### Challenge 18 [20 bonus points]: Remote Code Execution with SQLi attack
+
+By exploiting the same SQL injection attack as in challenge #13, find a way to install a reverse shell on the server.
+
+
