@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define FILE_SIZE 1000
-#define LINE_SIZE 20
+#define LINE_SIZE 12
 #define on_error(...) { fprintf(stderr, __VA_ARGS__); fflush(stderr); exit(1); }
 
 void echo(char *arg){
