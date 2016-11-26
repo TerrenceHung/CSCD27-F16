@@ -5,13 +5,15 @@
 #define BUFFER_SIZE 1000
 #define on_error(...) { fprintf(stderr, __VA_ARGS__); fflush(stderr); exit(1); }
 void echo(char *arg1, char *arg2){
-     char input1[BUFFER_SIZE*2];
+     char result[BUFFER_SIZE*2];
+     char input1[BUFFER_SIZE];
      char input2[BUFFER_SIZE];
 
      strncpy(input1, arg1, BUFFER_SIZE);
      strncpy(input2, arg2, BUFFER_SIZE);
-     strcat(input1, input2);
-     printf("Echo Response: %s\n", input1);
+     strcat(result, input1);
+     strcat(result, input2);
+     printf("Echo Response: %s\n", result);
 }
 
 int main(int argc, char **argv){
