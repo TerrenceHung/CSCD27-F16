@@ -87,7 +87,7 @@ The command-line argument to challenge #4 names a file to be read. The file cont
 An important defense against buffer overflows is use of a hardware/OS feature that flags the stack address space as non-executable. The processor will not execute any instructions that are stored on the stack. You can still use buffer-overflow tactics, such as overflowing variable storage space and modifying a return address, but you'll have to find a new mechanism for obtaining a root shell.
 
 - Compile: `gcc challenge5.c -o challenge5 -m32`
-- Attack: `./challenge3 $(python attack5.py)`
+- Attack: `./challenge5 $(python attack5.py)`
 - Reading: [Stack Smashing On A Modern Linux System](https://www.exploit-db.com/papers/24085/)
 
 ### Challenge 6 [20 bonus points]: Shellcode in randomized-addressing stack environment
@@ -96,7 +96,7 @@ In all the previous challenges, stack addresses were consistent across execution
 
 - Enable ASRL: `sudo bash -c `echo 2 | sudo tee /proc/sys/kernel/randomize_va_space`
 - Compile: `gcc challenge6.c -o challenge6 -m32`
-- Attack: `./challenge3 $(python attack5.py)`
+- Attack: `./challenge6 $(python attack6.py)`
 - Reading: [Stack Smashing On A Modern Linux System](https://www.exploit-db.com/papers/24085/)
 
 ### Challenge 7 [30 bonus points]: Bypassing authentication
