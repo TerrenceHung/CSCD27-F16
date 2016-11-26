@@ -1,4 +1,3 @@
-
 # CSCD27 Assignment 2
 
 The primary goals of this assignment are to improve your understanding of how an attacker on a local network could:
@@ -7,6 +6,8 @@ The primary goals of this assignment are to improve your understanding of how an
 - Part 2. Hijack communications (Lab 8)
 
 Good Luck!
+
+___
 
 ## Instructions
 
@@ -52,6 +53,8 @@ Welcome alice your bank account balance is $31415
 
 This program does not terminate. As described previously, you are not allowed to read nor modify this program. From now on, you will exclusively act *as Mallory*.
 
+___
+
 ## Part 1. Eavesdropping the communication
 
 For this part, make sure that you are able to complete [Lab 7](https://github.com/ThierrySans/CSCD27-F16/tree/master/labs/07).
@@ -75,6 +78,8 @@ For this part, make sure that you are able to complete [Lab 8](https://github.co
 **Task 2.2 (20 points):** As Mallory, spoof the HTTP communication to return fake information to Alice. Isolate the TCP stream that shows the fake HTTP request (with login and password) and response (with fake banking information). Export it as `spoof.txt` and submit it as your answer.
 
 **Task 2.3 (20 points):** As Mallory, execute a man-in-the-middle attack on the HTTPS communication to obtain both Alice's requests (with username and password) and the server's response (banking information) in plaintext. Isolate the TCP stream that shows the HTTP communication between Alice and Mallory. Export it as `mitm.txt` and submit it as your answer.
+
+___
 
 ## Part 3. Securing the communication
 
