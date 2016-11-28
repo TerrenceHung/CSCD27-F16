@@ -23,7 +23,7 @@ with requests.Session() as s:
      res = s.get(BASE + '/post.php', params={'msg': "hello world!"})
 
      # content spoofing
-     params = urllib.urlencode({'msg':"""
+     params = urllib.parse.urlencode({'msg':"""
          <h1>I can inject HTML tags!</script>
      """})
      res = s.get(BASE + '/post.php', params=params)
@@ -34,5 +34,5 @@ with requests.Session() as s:
 
      # change profile picture (using a file)
      data = {'optionsimagetype' : 'file'}
-     files = {'upfile': open(os.path.dirname(os.path.abspath(__file__)) + '/../microblogging/provision/black-hat.png', 'rb')}
+     files = {'upfile': open(os.path.dirname(os.path.abspath(__file__)) + '/../../assignments/03/code/part3/microblogging/provision/black-hat.png', 'rb')}
      s.post(BASE + '/profile.php', data=data, files=files)
