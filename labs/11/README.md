@@ -76,7 +76,7 @@ As Mallory, post the following message. What do you observe?
 As Mallory, login with the following credentials and post a message. What do you observe?
 
 - email: 0' UNION SELECT 'mallory@example.com','Lucky  Charm',password FROM users where email = 'mallory@example.com
-- password: 123456
+- password: pass4mallory
 
 **Task**: Write a python code that performs the attack given above automatically.
 
