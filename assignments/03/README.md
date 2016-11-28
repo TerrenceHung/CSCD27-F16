@@ -51,6 +51,9 @@ $ vagrant up
 $ vagrant ssh
 ubuntu-trusty64$ cd /vagrant
 ```
+
+All of the challenges below should work with `python2`.
+
 ### Challenge 1 [10 points]: Overwriting a return-address with a buffer-overflow
 
 Challenge #1 reads an input from the command line and prints a message. Your attack will provide an input value that causes the program to execute a backdoor that is already in the program.
@@ -124,7 +127,6 @@ Unfortunately, this vagrant setup for this part does not work on the linux lab. 
 cd ~/cscd27f16_space/CSCD27-F16/assignments/03/code/part2
 $ vagrant up
 ```
-
 
 The vagrant setup is composed of two boxes:
 
@@ -210,6 +212,20 @@ You should **not** ssh into the vagrant. Instead, all interactions can be done t
 
 While using and attacking this web application, you may want to reset it. No need to reset the vagrant, you can just reset the web application by visiting [the reset page](http://localhost:8080/reset.php).
 
+All of the challenges below should work with `python2` and use exclusively mallory's credentials:
+
+```
+login: mallory@example.com
+password: pass4mallory
+```
+
+However, some challenges (#13, #14 and #18) requires alice to login and browse the main page once the attack has been setup. You can check that by signing in manually with Alice's credentials:
+
+```
+login: alice@example.com
+password: pass4alice!
+```
+
 ### Challenge 12 [10 points]: Incomplete mediation
 
 The application was built in such a way that only authenticated users can delete their own messages. From the frontend, it seems correctly implemented as authenticated users can click on a delete button for their own messages only. However, it might not be correctly implemented in the backend. As Mallory, find an easy way to delete Alice's message that says "Mallory should not be trusted!".
@@ -224,14 +240,14 @@ The application seems to  be vulnerable to a cross-site request forgery attack. 
 
 - Attack: `python attack13.py`
 
-Most likely, your CSRF attack will inject a URL code on the webpage. For the attack to work, we assume that Alice visits the main page after your attack was executed. Th attack should not disrupt the normal behavior of the application. Alice might notice that some image links are broken but nothing else.
+Most likely, your CSRF attack will inject a URL code on the webpage. For the attack to work, we assume that Alice signs in and visits the main page after your attack was executed. Th attack should not disrupt the normal behavior of the application. Alice might notice that some image links are broken but nothing else.
 
 ### Challenge 14 [15 points]: Stealing authentication token with XSS attack
 
 The application seems to be vulnerable to a cross-site scripting attack. As Mallory, find and exploit this vulnerability to steal Alice's authentication token and send it to the Mallory's website at (replace `__alice_id_` with alice's authentication token and `__your_utorid__` with your utorid):
 
 ```
-https://mathlab.utsc.utoronto.ca/courses/cscd27f16/assignment/03/server/token.php?token=__alice_id__&utorid=__your_utorid__
+https://mathlab.utsc.utoronto.ca/courses/cscd27f16/assignment/03/server/token.php?utorid=__your_utorid__&PHPSESSID=__alice_session_id___
 ```
 
 To verify that Mallory's website has receive the token, you can visit
@@ -243,7 +259,7 @@ https://mathlab.utsc.utoronto.ca/courses/cscd27f16/assignment/03/server/?utorid=
 
 - Attack: `python attack14.py`
 
-Most likely, your XSS attack will inject a malicious javascript code on the webpage. For the attack to work, we assume that Alice visits the main page after your attack was executed. The attack should not disrupt the normal behavior of the application. Alice should not notice anything.
+Most likely, your XSS attack will inject a malicious javascript code on the webpage. For the attack to work, we assume that Alice signs in and visits the main page after your attack was executed. The attack should not disrupt the normal behavior of the application. Alice should not notice anything.
 
 ### Challenge 15 [15 points]: Bypassing authentication with SQLi attack
 
