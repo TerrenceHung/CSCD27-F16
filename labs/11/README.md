@@ -59,7 +59,7 @@ As Mallory, update Mallory's profile picture with the following address. Refresh
 http://localhost:8080/post.php?msg=Worm%20Attack
 ```
 
-** Task **: Write a python code that performs the attack given aboce automatically.
+** Task **: Write a python code that performs the attack given above automatically.
 
 ## Cross-Site Scripting (XSS)
 
@@ -69,7 +69,7 @@ As Mallory, post the following message. What do you observe?
 <script>alert(document.cookie);</script>
 ```
 
-** Task **: Write a python code that performs the attack given aboce automatically.
+** Task **: Write a python code that performs the attack given above automatically.
 
 ## SQL Injection
 
@@ -78,7 +78,7 @@ As Mallory, login with the following credentials and post a message. What do you
 - email: 	0' UNION SELECT ‘mallory@example.com’,'Lucky  Charm’,password FROM users where email = ‘mallory@example.com
 - password: 123456
 
-** Task **: Write a python code that performs the attack given aboce automatically.
+** Task **: Write a python code that performs the attack given above automatically.
 
 ## File Inclusion
 
@@ -90,7 +90,7 @@ As Mallory, create the following PHP file and upload this file as Mallory's prof
 ?>
 ```
 
-** Task **: Write a python code that performs the attack given aboce automatically.
+** Task **: Write a python code that performs the attack given above automatically.
 
 
 
