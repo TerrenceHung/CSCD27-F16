@@ -53,7 +53,7 @@ In the following, try to perform the action manually first using the browser. On
 
 ## Cross-Site Request Forgery (CSRF)
 
-As Mallory, update Mallory's profile picture with the following address. Refresh the main several times. What do you observe?
+As Mallory, update Mallory's profile picture with the following address. Refresh the main page several times. What do you observe?
 
 ```
 http://localhost:8080/post.php?msg=Worm%20Attack
@@ -75,10 +75,10 @@ As Mallory, post the following message. What do you observe?
 
 As Mallory, login with the following credentials and post a message. What do you observe?
 
-- email: 	0' UNION SELECT ‘mallory@example.com’,'Lucky  Charm’,password FROM users where email = ‘mallory@example.com
+- email: 0' UNION SELECT ‘mallory@example.com’,'Lucky  Charm’,password FROM users where email = ‘mallory@example.com
 - password: 123456
 
-** Task **: Write a python code that performs the attack given above automatically.
+**Task**: Write a python code that performs the attack given above automatically.
 
 ## File Inclusion
 
