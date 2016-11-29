@@ -212,7 +212,7 @@ You should **not** ssh into the vagrant. Instead, all interactions can be done t
 
 While using and attacking this web application, you may want to reset it. No need to reset the vagrant, you can just reset the web application by visiting [the reset page](http://localhost:8080/reset.php).
 
-All of the challenges below should work with `python2` and use exclusively mallory's credentials:
+All of the challenges below should work with `python3` and use exclusively mallory's credentials:
 
 ```
 login: mallory@example.com

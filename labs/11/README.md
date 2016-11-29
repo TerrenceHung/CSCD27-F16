@@ -18,7 +18,7 @@ Using the Chrome (or Firefox) developpers console, use the app and collect all H
 
 | User Action                              | Path                    | HTTP method             |  Arguments             |
 | -----------------------------------------|:-----------------------:|:-----------------------:|:-----------------------:
-| Sign-in                                  | /login.php              | POST                    | email, password        |
+| Sign-in                                  | /signin.php              | POST                    | email, password        |
 | Sign-up                                  |                         |                         |                        |
 | Post a message                           |                         |                         |                        |
 | Delete a message                         |                         |                         |                        |
