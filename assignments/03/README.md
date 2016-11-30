@@ -130,8 +130,8 @@ $ vagrant up
 
 The vagrant setup is composed of two boxes:
 
-- **kali** is the attacker's machine (ip 10.0.1.101)
-- **target** is the victim's machine (ip 10.0.1.102)
+- **kali** is the attacker's machine (ip 10.0.1.102)
+- **target** is the victim's machine (ip 10.0.1.101)
 
 In the challenges below, you should use exclusively the kali VM without ssh'ing into the target VM.
 
