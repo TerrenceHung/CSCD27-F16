@@ -189,7 +189,7 @@ Thus, we can load, configure and run the exploit:
 
     ```shell
     msf > show options
-    msf > set TARGET 10.0.1.101
+    msf > set RHOST 10.0.1.101
     ```
 
 3. run the exploit
