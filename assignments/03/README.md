@@ -29,7 +29,7 @@ submit -c cscd27f16 -a a3 attack1.py attack2.py attack3.py attack4.py attack12.p
 
 To submit the bonus challenges:
 ```shell
-submit -c cscd27f16 -a bonus attack5.py attack6.py attack7.py attack8.py attack9.nmap attack10.pdf attack11.txt attack16.py attack17.py attack18.py
+submit -c cscd27f16 -a bonus attack5.py attack6.py attack7.py attack8.py attack9.nmap attack10.pdf attack11.jpg attack16.py attack17.py attack18.py
 ```
 
 ### Academic Integrity
@@ -140,7 +140,7 @@ In the challenges below, you should use exclusively the kali VM without ssh'ing 
 In this challenge, we are going to use nmap to discover the services running on the target machine. This command exports the results in a file called `target.nmap`:
 
 ```shell
-$ nmap -O —sV -p0-65535 10.0.1.101 -oN target.nmap
+$ nmap -O —sV -p0-65535 10.0.1.101 -oN attack9.nmap
 ```
 
 ## Challenge 10 [20 bonus points]: OpenVAS - Vulnerability Scanner
@@ -165,7 +165,7 @@ $ openvasmd —create-user=admin
 $ openvasmd —new-password=admin —user=admin
 ```
 
-Finally, scan the target and export (as a pdf) the report through the OpenVAS web interface (https://localhost:9392)[https://localhost:9392]
+Finally, scan the target and export (as a `attack10.pdf`) the report through the OpenVAS web interface (https://localhost:9392)[https://localhost:9392]
 
 ## Challenge 11 [20 bonus points]: Metasploit - Exploit Framework
 
@@ -197,6 +197,8 @@ Thus, we can load, configure and run the exploit:
     ```
     msf > exploit
     ```
+
+Make sure that the attacked succeeded and take a screenshot of your screen (named `attack11.jpg`) showing that it succeeded.
 
 ___
 
